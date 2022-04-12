@@ -1,14 +1,26 @@
 FROM php:8.1-fpm
 
 RUN apt update \
-    && apt install -y zlib1g-dev g++ git libicu-dev zip libzip-dev zip \
+    && apt install -y zlib1g-dev g++ git libicu-dev zip libzip-dev zip gcc \
     && docker-php-ext-install intl opcache pdo pdo_mysql \
     && pecl install apcu \
     && docker-php-ext-enable apcu \
     && docker-php-ext-configure zip \
-    && docker-php-ext-install zip \
+    && docker-php-ext-install zip
+
+RUN pecl channel-update pecl.php.net \
     && pecl install redis \
-    && docker-php-ext-enable redis
+    && docker-php-ext-enable redis \
+    && git clone https://github.com/nrk/phpiredis.git \
+    && ( \
+        cd phpiredis \
+        && phpize \
+        && ./configure --enable-phpiredis \
+        && make \
+        && make install \
+    ) \
+    && rm -r phpiredis \
+    && docker-php-ext-enable phpiredis
 
 WORKDIR /var/www
 
