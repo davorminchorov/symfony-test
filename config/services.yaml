@@ -22,5 +22,8 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    App\Interfaces\CacheInterface $cache: '@App\Repositories\RedisCacheRepository'
+    App\Interfaces\RedisInterface $redis: '@App\Services\Redis'
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
