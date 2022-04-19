@@ -1,13 +1,13 @@
 <?php
 
-namespace App\DataTransferObjects;
+namespace App\RequestDataTransferObjects;
 
 use App\RequestFactories\StoreEmailAddressRequestFactory;
 use Symfony\Component\HttpFoundation\Request;
 
 class StoreEmailAddressRequestDataTransferObject
 {
-    public function __construct(private string $emailAddress)
+    public function __construct(private readonly string $emailAddress)
     {
     }
 

@@ -2,7 +2,7 @@
 
 namespace App\Actions;
 
-use App\DataTransferObjects\StoreEmailAddressRequestDataTransferObject;
+use App\RequestDataTransferObjects\StoreEmailAddressRequestDataTransferObject;
 use App\Repositories\RedisCacheRepository;
 use App\ResponseDataTransferObjects\StoreEmailAddressResponseDataTransferObject;
 use App\ValueObjects\EmailAddress;
@@ -39,7 +39,7 @@ class StoreEmailAddressAction
         $existingEmailAddressDate = $this->redisCacheRepository->get(key: $this->getEmailAddressChecksumDateCacheKey($emailAddress));
 
         return StoreEmailAddressResponseDataTransferObject::prepare(
-            message: sprintf(format: 'Your request has been already submitted at %s', values: $existingEmailAddressDate),
+            message: sprintf('Your request has been already submitted at %s', $existingEmailAddressDate),
             statusCode: Response::HTTP_BAD_REQUEST
         );
     }
@@ -57,7 +57,7 @@ class StoreEmailAddressAction
         );
 
         return StoreEmailAddressResponseDataTransferObject::prepare(
-            message: sprintf(format: 'Your request has been added at %s', values: $date),
+            message: sprintf('Your request has been added at %s', $date),
             statusCode: Response::HTTP_OK
         );
     }

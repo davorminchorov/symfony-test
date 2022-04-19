@@ -27,7 +27,7 @@ class Redis implements RedisInterface
     /**
      * Gets the value(s) for a specific key from Redis.
      */
-    public function get(string $key): string
+    public function get(string $key): ?string
     {
         return phpiredis_command_bs($this->redis, [
             RedisCommand::GET->value, $key,

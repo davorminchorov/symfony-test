@@ -11,7 +11,7 @@ interface RedisInterface
      *
      * @return string
      */
-    public function get(string $key): string;
+    public function get(string $key): ?string;
 
     /**
      * Sets a single value into Redis.

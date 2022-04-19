@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Actions\StoreEmailAddressAction;
-use App\DataTransferObjects\StoreEmailAddressRequestDataTransferObject;
+use App\RequestDataTransferObjects\StoreEmailAddressRequestDataTransferObject;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -15,7 +16,7 @@ use Symfony\Component\Serializer\Serializer;
 class EmailsController extends AbstractController
 {
     #[Route(path: '/api/v1/emails', name: 'api.v1.emails.store', methods: ['POST'])]
-    public function store(Request $request, StoreEmailAddressAction $action): string
+    public function store(Request $request, StoreEmailAddressAction $action): JsonResponse
     {
         $responseDataTransferObject = $action->execute(requestDataTransferObject: StoreEmailAddressRequestDataTransferObject::fromRequest($request));
 

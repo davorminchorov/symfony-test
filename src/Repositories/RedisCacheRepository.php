@@ -17,7 +17,7 @@ class RedisCacheRepository implements CacheInterface
     /**
      * Gets a specific value from the cache storage.
      */
-    public function get(string $key): string
+    public function get(string $key): ?string
     {
         return $this->redis->get($key);
     }

@@ -7,7 +7,7 @@ interface CacheInterface
     /**
      * Gets a value from the cache storage.
      */
-    public function get(string $key): string;
+    public function get(string $key): ?string;
 
     /**
      * Sets a value into the cache storage.

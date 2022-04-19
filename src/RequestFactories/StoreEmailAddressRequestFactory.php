@@ -2,7 +2,7 @@
 
 namespace App\RequestFactories;
 
-use App\DataTransferObjects\StoreEmailAddressRequestDataTransferObject;
+use App\RequestDataTransferObjects\StoreEmailAddressRequestDataTransferObject;
 
 class StoreEmailAddressRequestFactory
 {

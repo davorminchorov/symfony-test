@@ -162,6 +162,12 @@
     "symfony/process": {
         "version": "v6.0.7"
     },
+    "symfony/property-access": {
+        "version": "v6.0.7"
+    },
+    "symfony/property-info": {
+        "version": "v6.0.7"
+    },
     "symfony/routing": {
         "version": "6.0",
         "recipe": {
