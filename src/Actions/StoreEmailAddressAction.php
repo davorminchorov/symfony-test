@@ -10,10 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class StoreEmailAddressAction
 {
-    public function __construct(
-        private readonly RedisCacheRepository $redisCacheRepository,
-        private readonly StoreEmailAddressResponseDataTransferObject $responseDataTransferObject
-    ) {
+    public function __construct(private readonly RedisCacheRepository $redisCacheRepository)
+    {
     }
 
     /**
@@ -40,7 +38,7 @@ class StoreEmailAddressAction
 
         $existingEmailAddressDate = $this->redisCacheRepository->get(key: $this->getEmailAddressChecksumDateCacheKey($emailAddress));
 
-        return $this->responseDataTransferObject->prepare(
+        return StoreEmailAddressResponseDataTransferObject::prepare(
             message: sprintf(format: 'Your request has been already submitted at %s', values: $existingEmailAddressDate),
             statusCode: Response::HTTP_BAD_REQUEST
         );
@@ -58,12 +56,12 @@ class StoreEmailAddressAction
             value: $date = date('Y-m-d H:i:s'),
         );
 
-        return $this->responseDataTransferObject->prepare(
+        return StoreEmailAddressResponseDataTransferObject::prepare(
             message: sprintf(format: 'Your request has been added at %s', values: $date),
             statusCode: Response::HTTP_OK
         );
     }
-    
+
     private function getEmailAddressChecksumDateCacheKey(EmailAddress $emailAddress): string
     {
         return "{$emailAddress->getEmailAddressChecksum()}_date";

@@ -2,19 +2,17 @@
 
 namespace App\ResponseDataTransferObjects;
 
-use App\Factories\StoreEmailAddressRequestFactory;
-use App\Factories\StoreEmailAddressResponseFactory;
-use Symfony\Component\HttpFoundation\Request;
+use App\ResponseFactories\StoreEmailAddressResponseFactory;
 
 class StoreEmailAddressResponseDataTransferObject
 {
-    public function __construct(private string $message, private string $statusCode)
+    public function __construct(private ?string $message = null, private ?string $statusCode = null)
     {
     }
 
-    public function prepare(string $message, string $statusCode): StoreEmailAddressResponseDataTransferObject
+    public static function prepare(string $message, string $statusCode): StoreEmailAddressResponseDataTransferObject
     {
-        return StoreEmailAddressResponseFactory::make([
+        return StoreEmailAddressResponseFactory::make(attributes: [
             'message' => $message,
             'statusCode' => $statusCode,
         ]);

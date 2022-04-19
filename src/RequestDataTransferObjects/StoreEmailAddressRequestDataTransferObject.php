@@ -2,7 +2,7 @@
 
 namespace App\DataTransferObjects;
 
-use App\Factories\StoreEmailAddressRequestFactory;
+use App\RequestFactories\StoreEmailAddressRequestFactory;
 use Symfony\Component\HttpFoundation\Request;
 
 class StoreEmailAddressRequestDataTransferObject
