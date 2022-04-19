@@ -3,11 +3,19 @@
 namespace App\ResponseDataTransferObjects;
 
 use App\ResponseFactories\StoreEmailAddressResponseFactory;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 class StoreEmailAddressResponseDataTransferObject
 {
-    public function __construct(private ?string $message = null, private ?string $statusCode = null)
+    private readonly string $message;
+
+    #[Ignore]
+    private readonly int $statusCode;
+
+    public function __construct(string $message, int $statusCode)
     {
+        $this->message = $message;
+        $this->statusCode = $statusCode;
     }
 
     public static function prepare(string $message, string $statusCode): StoreEmailAddressResponseDataTransferObject
