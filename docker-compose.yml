@@ -49,3 +49,13 @@ services:
     depends_on:
       - php
       - mysql
+
+  redis_commander:
+    container_name: symfony_test_redis_commander
+    image: rediscommander/redis-commander
+    ports:
+      - "8081:8081"
+    environment:
+      REDIS_HOST: redis
+    depends_on:
+      - redis
