@@ -7,6 +7,12 @@ parameters:
     redis.host: '%env(REDIS_HOST)%'
     redis.port: '%env(REDIS_PORT)%'
 
+    mailer.transport: '%env(MAILER_TRANSPORT)%'
+    mailer.host: '%env(MAILER_HOST)%'
+    mailer.port: '%env(MAILER_PORT)%'
+    mailer.user: '%env(MAILER_USER)%'
+    mailer.password: '%env(MAILER_PASSWORD)%'
+
 services:
     # default configuration for services in *this* file
     _defaults:

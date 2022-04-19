@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 services:
   mysql:
     container_name: symfony_test_mysql
@@ -59,3 +59,20 @@ services:
       REDIS_HOST: redis
     depends_on:
       - redis
+
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: symfony_test_mailhog
+    user: root
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+    volumes:
+      - mailhog:/tmp
+    environment:
+      MH_STORAGE: maildir
+      MH_MAILDIR_PATH: /tmp
+
+volumes:
+  mailhog:
