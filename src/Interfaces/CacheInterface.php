@@ -22,5 +22,5 @@ interface CacheInterface
     /**
      * Removes specific value(s) from the cache storage.
      */
-    public function pop(string $key, int $numberOfItems = 1): array;
+    public function pop(string $key, int $numberOfItems = 1): null|string|array;
 }

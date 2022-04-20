@@ -57,7 +57,7 @@ class Redis implements RedisInterface
     /**
      * Removes a number of values from Redis.
      */
-    public function pop(string $key, int $numberOfItems = 1): array
+    public function pop(string $key, int $numberOfItems = 1): null|string|array
     {
         return phpiredis_command_bs($this->redis, [
             RedisCommand::LPOP->value, $key, $numberOfItems,

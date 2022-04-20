@@ -9,7 +9,7 @@ interface RedisInterface
      *
      * @param  string  $key
      *
-     * @return string
+     * @return string|null
      */
     public function get(string $key): ?string;
 
@@ -38,8 +38,8 @@ interface RedisInterface
      *
      * @param  string  $key
      * @param  int  $numberOfItems
-     * 
-     * @return array
+     *
+     * @return string|array|null
      */
-    public function pop(string $key, int $numberOfItems): array;
+    public function pop(string $key, int $numberOfItems): null|string|array;
 }
